@@ -6,11 +6,11 @@
 %%% @end
 %%% Created : 07. 三月 2018 16:33
 %%%-------------------------------------------------------------------
--module('ParseFile').
+-module(parsefile).
 -author("Administrator").
 
 %% API
--export([parse/1]).
+-export([parse/1,mytupletolist/1]).
 -import(rfc4627,[decode/1,encode/1]). %decode解码，encode编码
 
 
@@ -21,7 +21,18 @@ parse(File) ->
     {error,Reason} -> io:format("parsefile error ~p~n",[Reason])
   end.
 
-parse() ->
-  ;
-  parse() ->
-.
+%%parse() ->
+%%  ;
+%%  parse() ->
+%%.
+
+
+
+mytupletolist(T) ->
+  mytupletolist(T,tuple_size(),0,[]).
+
+mytupletolist(L,size,F,K)  when  size  > F  ->
+  mytupletolist(L,size-1,F,[element(size,L)|L]);
+
+mytupletolist(L,size,F,K)  when  size =:= F  ->
+  L.

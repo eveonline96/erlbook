@@ -27,5 +27,6 @@ my_tuple_to_list(T) ->
 
 my_tuple_to_list(T,Index,F,L) when Index>F ->
 	my_tuple_to_list(T,Index-1,F,[element(Index,T) | L]); %从0开始到n-1
+
 my_tuple_to_list(T,Index,F,L) when Index=:= F ->
 	L.
