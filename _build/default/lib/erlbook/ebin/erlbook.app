@@ -1,0 +1,9 @@
+{application,erlbook,
+             [{description,[]},
+              {vsn,"1"},
+              {registered,[]},
+              {applications,[kernel,stdlib]},
+              {mod,{erlbook,[]}},
+              {env,[]},
+              {modules,[afile_client,afile_server,datetime,geometry,
+                        helloworld,math_functions,myfunc,mytupletolist]}]}.

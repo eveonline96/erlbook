@@ -1,0 +1,21 @@
+%%%-------------------------------------------------------------------
+%%% @author wh
+%%% @copyright (C) 2018, <COMPANY>
+%%% @doc
+%%%
+%%% @end
+%%% Created : 20. 二月 2018 20:01
+%%%-------------------------------------------------------------------
+{application, erlbook,
+  [
+    {description, ""},
+    {vsn, "1"},
+    {registered, []},
+    {applications, [
+      kernel,
+      stdlib
+    ]},
+    {mod, {erlbook, []}},
+    {env, []}
+  ]
+}.
