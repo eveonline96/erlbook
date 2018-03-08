@@ -65,7 +65,7 @@ y(File)    -- generate a Yecc parser
 ** commands in module i (interpreter interface) **
 ih()       -- print help for the i module
 
-% (3).试着用一个元祖来表示一座房子，
+% (3).试着用一个元组来表示一座房子，
 % 再用一个房子列表来表示一条街道。
 % 请确保你能向这些结构中加入数据结构或从中取出数据。
 

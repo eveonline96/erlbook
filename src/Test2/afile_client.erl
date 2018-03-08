@@ -1,3 +1,11 @@
+%%%-------------------------------------------------------------------
+%%% @author Administrator
+%%% @copyright (C) 2018, <COMPANY>
+%%% @doc
+%%%
+%%% @end
+%%% Created : 08. 三月 2018 10:14
+%%%-------------------------------------------------------------------
 -module(afile_client).
 -export([ls/1,get_file/2,put_file/3]).
 
@@ -23,14 +31,12 @@ get_file(Server,File) ->
 put_file(Server,File,NewName) ->
 	case file:read_file(File) of
 		{ok,Content} ->
-			Server ! {self(),{put_file,Content,NewName}},
+			Server!{self(),{put_file,Content,NewName}},
 			receive
-			{Server,Result} ->
-				Result
+				{Server,Result}-> Result
 			end;
-		{error,Reason} ->
-			Reason
-  end.
+		{error,Reason} -> Reason
+	end.
 
 
 

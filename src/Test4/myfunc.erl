@@ -2,7 +2,7 @@
 %%% @author wh
 %%% @copyright (C) 2018, <COMPANY>
 %%% @doc
-%%%% 
+%%%%
 %%% (3).查看 erlang:now/0、erlang:date/0 和 erlang:time/0 的定义。
 %%erlang:now/0 now（） - >时间戳
 %%Timestamp = timestamp()
@@ -70,10 +70,10 @@ my_time_func(F) ->
 	F,
 	{Hour2, Minute2, Second2}=erlang:time(),
 	io:format("function runtime:~f s ~n",(Hour2-Hour1)*3600+(Minute2-Minute1)*60+(Second2-Second1))
-		.
+.
 
 my_date_string() ->
 	{Year, Month, Day}=erlang:date(),
 	{Hour, Minute, Second}=erlang:time(),
 	io:format("~pyear ~pmonth ~pday ~phour ~pmin ~psec",[Year, Month, Day,Hour, Minute, Second])
-	.
+.

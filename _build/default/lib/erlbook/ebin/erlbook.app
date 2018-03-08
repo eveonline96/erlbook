@@ -5,5 +5,5 @@
               {applications,[kernel,stdlib]},
               {mod,{erlbook,[]}},
               {env,[]},
-              {modules,[datetime,geometry,math_functions,myfunc,mytupletolist,
-                        rfc4627]}]}.
+              {modules,[afile_client,afile_server,geometry,helloworld,
+                        math_functions,myfunc,mytupletolist]}]}.
