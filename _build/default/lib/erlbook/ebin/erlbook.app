@@ -6,4 +6,6 @@
               {mod,{erlbook,[]}},
               {env,[]},
               {modules,[afile_client,afile_server,geometry,helloworld,
-                        math_functions,myfunc,mytupletolist]}]}.
+                        mapsearchpred,math_functions,myfile,myfunc,
+                        mytupletolist,parsefile,reversebinarystring,
+                        try_test]}]}.

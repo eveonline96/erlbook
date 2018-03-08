@@ -35,7 +35,9 @@ parse_file(File) ->
 % 非文件结尾
 parse_file(FileFd, Line, X) when Line =/= eof ->
 	case rfc4627:decode(Line) of
-%%		X#{}??????
+%%		问题:X#{}??????
+%%		首次定义某个键使用Key=value,更新那个键使用Key:=Value
+
 		{ok, {obj, [{Key, Value}]}, []} -> parse_file(FileFd, io:get_line(FileFd, "Read a line"), X#{Key => Value});
 		{error, Reason} -> io:format("parse_file/3 error:~p~n", [Reason])
 	end;
