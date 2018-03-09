@@ -8,4 +8,4 @@
               {modules,[afile_client,afile_server,geometry,helloworld,
                         mapsearchpred,math_functions,myfile,myfunc,
                         mytupletolist,parsefile,reversebinarystring,
-                        try_test]}]}.
+                        termtopacket,try_test]}]}.
