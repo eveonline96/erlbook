@@ -26,16 +26,19 @@
 -compile(export_all).
 
 start(AnAtom,Fun) ->
-%%	spawn(spawnatom,create,[AnAtom,Fun])	,
-	create(AnAtom,Fun)	.
+	create(AnAtom,Fun),
+	create(AnAtom,Fun).
+
+%%因为Pid匹配的范围大，它可以匹配undefined，所以第一段代码中undefined永远不会被匹配。
+%%我们在写程序的时候需要注意，范围小的放在前面，范围大的放在后面，避免大范围包含小范围这种情况
 
 create(AnAtom,Fun) ->
 	case whereis(AnAtom) of
-		undefined-> io:format("this atom is undefined~n") ,
-			register(AnAtom,spawn(Fun));
+		undefined -> io:format("this atom is undefined~n") ,
+			         register(AnAtom,spawn(Fun));
 
-		_Pid ->
-			io:format(" this atom name is ~p~n",[AnAtom])
+		Pid ->
+			io:format(" this atom Pid is ~p~n",[Pid])
 end.
 
 

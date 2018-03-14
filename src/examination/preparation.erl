@@ -94,8 +94,8 @@ color1(_) ->
 
 color2(C) ->
 	case C of
-		  0->white;
-		  1 ->green;
+		 0->white;
+		 1 ->green;
 		 2 ->blue;
 		_ ->yellow
 end.

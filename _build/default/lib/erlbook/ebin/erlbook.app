@@ -5,7 +5,9 @@
               {applications,[kernel,stdlib]},
               {mod,{erlbook,[]}},
               {env,[]},
-              {modules,[afile_client,afile_server,dialyzer,geometry,
+              {modules,[afile_client,afile_server,area_server0,area_server1,
+                        area_server2,area_server_final,dialyzer,geometry,
                         helloworld,mapsearchpred,math_functions,myfile,myfunc,
-                        mytupletolist,parsefile,reversebinarystring,spawnatom,
-                        termtopacket,try_test,user_default]}]}.
+                        mytupletolist,parsefile,preparation,processes,
+                        reversebinarystring,spawnatom,termtopacket,try_test,
+                        user_default]}]}.
