@@ -7,7 +7,8 @@
               {env,[]},
               {modules,[afile_client,afile_server,area_server0,area_server1,
                         area_server2,area_server_final,dialyzer,geometry,
-                        helloworld,mapsearchpred,math_functions,myfile,myfunc,
-                        mytupletolist,parsefile,preparation,processes,
-                        reversebinarystring,spawnatom,termtopacket,try_test,
-                        user_default]}]}.
+                        helloworld,looptimingtest,mapsearchpred,
+                        math_functions,myfile,myfunc,mytupletolist,parsefile,
+                        preparation,processes,reversebinarystring,spawnatom,
+                        task1,task2,task3,task4_client,task4_server,
+                        termtopacket,try_test,user_default]}]}.

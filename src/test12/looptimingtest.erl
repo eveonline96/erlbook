@@ -14,15 +14,15 @@
 -module(looptimingtest).
 -author("Eric").
 
-%% API
--compile(export_all).
-
-start(N,M) ->sendmsg(creatprocess(N),).
-
-%创建N个进程
-
-creatprocess(N) ->
-	for(),
+%%%% API
+%%-compile(export_all).
+%%
+%%start(N,M) ->sendmsg(creatprocess(N),).
+%%
+%%%创建N个进程
+%%
+%%creatprocess(N) ->
+%%	for(),
 
 
 
