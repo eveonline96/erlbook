@@ -6,6 +6,9 @@
 % (提示：每个玩家各自一个进程，聊天服务器独立一个进程，
 % 玩家向服务器发出登录请求时，服务器将该玩家信息（名称、pid）存储起来，以便后续向该玩家进程发送消息。
 % 当A玩家与B玩家聊天时将A, B玩家的名字及聊天内容发送到服务器，服务器收到消息后将聊天内容转发给B玩家)
+
+%%实验结果:  socket连接正常,传输报错有bug
+
 %%% @end
 %%% Created : 14. 三月 2018 17:20
 %%%-------------------------------------------------------------------
@@ -15,8 +18,8 @@
 %% API
 -compile(export_all).
 
--record(user, {name,socket,online,pwd,text}).
--define(TCP_OPTIONS, [binary, {packet, 0}, {active, true}, {reuseaddr, true}]).
+-record(user, {name,socket,online,pwd,text}).   %定义姓名,socket, 在线,密码,文档
+-define(TCP_OPTIONS, [binary, {packet, 0}, {active, true}, {reuseaddr, true}]).  %设置打包约定:[binary,{packet,}]
 -define (tabInfo, tabinfo).
 -define (clInfo, clinfoSpawn).
 -define (seInfo, serverInfo).

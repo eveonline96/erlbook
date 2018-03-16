@@ -6,9 +6,10 @@
               {mod,{erlbook,[]}},
               {env,[]},
               {modules,[afile_client,afile_server,area_server0,area_server1,
-                        area_server2,area_server_final,dialyzer,geometry,
-                        helloworld,looptimingtest,mapsearchpred,
-                        math_functions,myfile,myfunc,mytupletolist,parsefile,
-                        preparation,processes,reversebinarystring,spawnatom,
-                        task1,task2,task3,task4_client,task4_server,
-                        termtopacket,try_test,user_default]}]}.
+                        area_server2,area_server_final,chat_client,
+                        chat_server,client,dialyzer,geometry,helloworld,
+                        looptimingtest,mapsearchpred,math_functions,myfile,
+                        myfunc,mytupletolist,parsefile,preparation,processes,
+                        reversebinarystring,server,spawnatom,task1,task2,
+                        task3,task4_client,task4_server,termtopacket,try_test,
+                        user_default]}]}.
