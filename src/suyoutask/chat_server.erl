@@ -20,7 +20,7 @@ server(User_List) ->
 
 % 启动服务器
 start_server() ->
-    register(messenger, spawn(messenger, server, [[]])).
+    register(messenger, spawn(chat_server, server, [[]])).
 
 % 服务器将新用户添加到用户列表
 server_logon(From, Name, User_List) ->

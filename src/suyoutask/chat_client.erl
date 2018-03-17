@@ -5,7 +5,7 @@
 %%	chat_server@YMS20180303.
 
 get_servernode() ->
-    chat_server@YMS20180303.
+    server@PC20180304.
 
 % 用户命令
 logon(Name) ->

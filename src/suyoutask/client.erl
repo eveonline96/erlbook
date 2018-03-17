@@ -13,80 +13,59 @@
 -compile([export_all]).
 
 
-
-%用户登录命令 先检查用户自身是否在系统中注册运行
-login(Name) ->
-	case whereis(client) of
-		  undefined->
-				register(client,spawn(chat_client,client_process,[servernode(),Name]));
-		  _Pid ->  logged_in
-	end.
-
-% 服务器地址
-servernode() ->
+get_servernode() ->
 	server@PC20180304.
 
-%客户端进程
-client_process(Server_Node,Name) ->
-	{messager,Server_Node}!{self(),login,Name},
-	await_server(),
-	client_process(Server_Node).
-
-
-await_server() ->
-	receive
-		{messenger,stop,Why} ->
-			io:format("~p~n",[Why]),
-			exit(normal);
-		{messager,What} ->
-			io:format("~p~n",[What])
+% 用户命令
+logon(Name) ->
+% 首先检查用户自身是否在系统中运行（是否可以查找到 mess_client 进程）
+	case whereis(mess_client) of
+		undefined ->
+			register(mess_client,
+				spawn(client, client, [get_servernode(), Name]));
+		_ -> already_logged_on
 	end.
 
+logoff() ->
+	mess_client ! logoff.
 
-client_process(Server_Node) ->
+%如果用户存在则将消息发送给 mess_client：
+send(ToName, Message) ->
+	case whereis(mess_client) of
+		undefined ->
+			not_logged_on;
+		_ -> mess_client ! {message_to, ToName, Message}
+
+	end.
+
+% 在每个节点上运行的客户端进程
+client(Server_Node, Name) ->
+	{messenger, Server_Node} ! {self(), logon, Name},%检查是否已登陆
+	await_result(),
+	client(Server_Node).
+
+client(Server_Node) ->
 	receive
-		logout ->
-			{messenger,Server_Node} !{self(),logout},
+		logoff ->
+			{messenger, Server_Node} ! {self(), logoff},
 			exit(normal);
-		{mesg_to,ToName,Message} ->
-			{messenger,Server_Node}!{self(),message_to,ToName,Message},
-			await_server();
-		{mesg_from,FromName,Message} ->
-			io:format("Message from ~p:~p~n",[FromName,Message])
-
+		{message_to, ToName, Message} ->
+			{messenger, Server_Node} ! {self(), message_to, ToName, Message},
+			await_result();
+		{message_from, FromName, Message} ->
+			io:format("Message from ~p: ~p~n", [FromName, Message])
 	end,
-	client_process(Server_Node)	.
+	client(Server_Node).
 
-
-
-%%用户登出
-logout() ->
-	client!logout.
-
-%发送消息
-send(ToName,Message) ->
-	case whereis(client) of
-		  undefined-> io:format("not login");
-		  _Pid  ->client!{message_to,ToName,Message}
+% 等待服务器响应
+await_result() ->
+	receive
+		{messenger, stop, Why} -> % 停止客户端
+			io:format("~p~n", [Why]),
+			exit(normal);
+		{messenger, What} ->  % 正常响应
+			io:format("~p~n", [What])
 	end.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
