@@ -9,7 +9,7 @@
                         area_server2,area_server_final,chat_client,
                         chat_server,client,dialyzer,geometry,helloworld,
                         looptimingtest,mapsearchpred,math_functions,myfile,
-                        myfunc,mytupletolist,parsefile,preparation,processes,
-                        reversebinarystring,server,spawnatom,task1,task2,
-                        task3,task4_client,task4_server,termtopacket,try_test,
-                        user_default]}]}.
+                        myfunc,mytupletolist,newclient,newserver,parsefile,
+                        preparation,processes,reversebinarystring,server,
+                        spawnatom,task1,task2,task3,task4_client,task4_server,
+                        termtopacket,try_test,user_default]}]}.
