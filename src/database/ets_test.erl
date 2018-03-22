@@ -93,7 +93,6 @@ t(N) ->
 			,{"ets lookup",F2}
 			,{"ets match",F3}
 			,{"ets select",F4}
-
 		]
 	).
 

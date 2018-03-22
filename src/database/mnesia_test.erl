@@ -59,13 +59,13 @@ t(N) ->
 		mnesia:transaction(F4),
 
 %%F5 have bug
-%%	MatchHead = #row{c1='$1', c2='$2',_='_'},
-%%	Guard = {'>', '$2', 30},
-%%	Result = '$1',
-%%	F5 =fun(_I) ->
-%%			mnesia:select(tab,[{MatchHead, [Guard], [Result]}])
-%%		end,
-%%	mnesia:transaction(F5),
+	MatchHead = #row{c1='$1', c2='$2',_='_'},
+	Guard = {'>', '$2', 30},
+	Result = '$1',
+	F5 =fun(_I) ->
+			mnesia:select(tab,[{MatchHead, [Guard], [Result]}])
+		end,
+	mnesia:transaction(F5),
 
 %%	F6 have bug
 %%	match_object（模式） - >事务中止| RecList
@@ -80,7 +80,7 @@ t(N) ->
 			,{"mnesia(transaction) write", F2}
 			,{"mnesia(dirty) read",        F3}
 			,{"mnesia(transaction) read",  F4}
-%%			,{"mnesia select",  F5}
+			,{"mnesia select",  F5}
 %%			,{"mnesia match",  F6}
 		]
 	).
