@@ -18,7 +18,8 @@
 
 start() ->
 	mnesia:start(),
-	mnesia:create_table(row, [{attributes, record_info(fields, row)}]),
+%%	mnesia:create_table(row, [{attributes, record_info(fields, row)}]),
+	mnesia:create_table(row,[{ram_copies,[node()]},{attributes,record_info(fields, row)}]),
 	mnesia:wait_for_tables([row], 20000).
 
 
@@ -29,21 +30,25 @@ t(N) ->
 
 	%测试dirty类型表的写入时间
 	F1 = fun(_I) ->
+%%		dirty_write(Record) -> ok | exit({aborted, Reason})
 			mnesia:dirty_write(Test)
-%%			mnesia:write({1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20})
 		 end,
+
 	%测试transaction类型表的写入时间
-%%	F2 = fun(_I) ->
-%%			mnesia:write(Test)
-%%		 end,
-%%	mnesia:transaction(F2),
+	%%	write(Record) -> transaction abort | ok
+	%%	write(Tab, Record, LockKind) -> transaction abort | ok
+	F2 = fun(_K)->
+			K=fun(_I) ->
+				mnesia:write(Test)
+			 end,
+		 mnesia:transaction(K)
+		end,
 
 	%测试dirty类型表的读取时间
 	F3 = fun(_I)->
 		Id = ptester:rand(1, N),
 		Str= integer_to_list(Id),
-	    dirty_read({row,c1== Str})
-		%%qlc:q([X || X <- mnesia:table(row),X#row.c1 =:= Str])
+		mnesia:dirty_read({row,c1 =:= Str})
 		 end,
 	%测试transaction类型表的读取时间
 	F4 = fun(_I)->
@@ -53,12 +58,30 @@ t(N) ->
 		 end,
 		mnesia:transaction(F4),
 
+%%F5 have bug
+%%	MatchHead = #row{c1='$1', c2='$2',_='_'},
+%%	Guard = {'>', '$2', 30},
+%%	Result = '$1',
+%%	F5 =fun(_I) ->
+%%			mnesia:select(tab,[{MatchHead, [Guard], [Result]}])
+%%		end,
+%%	mnesia:transaction(F5),
+
+%%	F6 have bug
+%%	match_object（模式） - >事务中止| RecList
+%%	F6 =fun(_I) ->
+%%		mnesia:match_object({'$1','_','_' })
+%%		end,
+%%	mnesia:transaction(F6),
+
 	ptester:run(N,
 		[
 			{"mnesia(dirty) write",        F1}
-%%			,{"mnesia(transaction) write", F2}
+			,{"mnesia(transaction) write", F2}
 			,{"mnesia(dirty) read",        F3}
 			,{"mnesia(transaction) read",  F4}
+%%			,{"mnesia select",  F5}
+%%			,{"mnesia match",  F6}
 		]
 	).
 

@@ -18,6 +18,9 @@
 %%开始
 start()->
 	dict:new().
+value(Max, Max, F) -> F;
+value(I, Max, F)   ->
+	value(I + 1, Max, [I|F]).
 
 % 测试函数t/1
 	% N：测试N次读取/写入
@@ -25,12 +28,15 @@ t(N) ->
 	F1 = fun(_I)->
 %%			dict:store(c1,1,start())
 %%		   怎么存储新的Newdict=dict:store(XX,XX,Olddict)  ,然后可以调用
-		 	 dict:store(row,{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20},start())
+%%		 	 dict:store(row,{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20},start())
+		 Value=value(1,100000,[]),
+		 dict:store(row,Value,start())
 		 end,
 
 	%测试进程字典的读取时间
 	F2 = fun(_I)->
-			dict:fetch_keys(start())
+%%			dict:fetch_keys(start())
+		 dict:find(row,start())
 		 end,
 
 ptester:run(N,
@@ -39,14 +45,6 @@ ptester:run(N,
 			,{"dict fetch",F2}
 		]
 ).
-
-
-
-
-
-
-
-
 
 
 
