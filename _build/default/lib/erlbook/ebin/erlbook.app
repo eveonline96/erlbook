@@ -14,5 +14,5 @@
                         mysql_recv,mysql_test,mytupletolist,newclient,
                         newserver,parsefile,preparation,processes,ptester,
                         reversebinarystring,spawnatom,task1,task2,task3,
-                        task4_client,task4_server,termtopacket,try_test,
+                        task4_client,task4_server,termtopacket,test,try_test,
                         user_default]}]}.
